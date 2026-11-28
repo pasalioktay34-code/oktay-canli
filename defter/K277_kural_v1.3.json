@@ -1,0 +1,65 @@
+{
+ "donem_B": "2026-12-01T00:00Z (oncesi ARSIV: kaydedilir, gozlem icin skorlanir, hukme girmez)",
+ "durumlar": [
+  "DENEME",
+  "GECTI",
+  "KALDI",
+  "EMEKLI",
+  "GERI_CEKILDI"
+ ],
+ "evren": "Binance USDT-M surekli vadeli, 24 sa hacim >= 10 M$, BTC haric, |24 sa| < %40",
+ "gecti": "karar noktasinda: n >= 783/kol VE P1 ve P2'ye karsi BH-p < 0,05 ve kazanma > 0,5 VE 3 BTC rejiminin her birinde >= 10 sinyal ve ort. net > 0 VE dusurme <= %10 VE uyusmazlik <= %1",
+ "giris": "PC'nin aldigi Binance bookTicker alis/satis ortasi; hakem: sinyal dakikasinin 1 dk mumunun [dip, tepe] araliginin > %0,1 disindaysa UYUSMAZLIK -> hakem fiyatiyla (dakika kapanisi) skor",
+ "guc": {
+  "kol_basina": 783,
+  "mde_formul": "MDE ~ 1,4 / kok(n) (eslesmis isaret testi, alfa 0,05 iki yonlu, guc 0,80)",
+  "mde_puan_783": 5
+ },
+ "hedef_gecersiz": "giris +/- 1,5 x ATR(4 sa, 14, Wilder, kapanmis mumlar); simetrik",
+ "karar_noktalari_gun": [
+  30,
+  60,
+  90,
+  180
+ ],
+ "kategori_tanim": {
+  "ana": "hacim >= 20 M$ ve BTC trendine ters degil",
+  "deneysel-likidite": "hacim < 20 M$",
+  "deneysel-rejim": "BTC trendine (K274 B1) ters"
+ },
+ "kategoriler": [
+  "ana",
+  "deneysel-likidite",
+  "deneysel-rejim"
+ ],
+ "kill": "karar noktasinda n >= 783/kol ama GECTI degil -> KALDI ve EMEKLI; gun 180'de GECTI degilse EMEKLI (yetersiz kanit); emekli kategoride sinyal uretilmez",
+ "kor_hakem": "hakem yalniz hakem_girdi.jsonl (opak kimlik, sembol, yon, giris, hedef, gecersiz, zaman, ufuk, maliyet modeli) gorur; esleme yalniz aciklama surecinde",
+ "maliyet": {
+  "borsa": "Binance USDT-M vadeli",
+  "emir": "taker (piyasa emri)",
+  "fonlama": "fundingTime (giris, cikis] araligindaki her Binance USDT-M fonlama olayi TAM uygulanir (oranti yok); long pozitif oranda oder",
+  "kayma_yuzde": [
+   0.037,
+   0.037
+  ],
+  "komisyon_yuzde": [
+   0.05,
+   0.05
+  ],
+  "surum": "M1"
+ },
+ "on_kayit": "test/ARASTIRMA_DEFTERI.md K277 + EK 1-6",
+ "plasebolar": {
+  "P1": "ayni coin, ayni an, ayni giris, TERS yon; hedef ve gecersizlik yer degistirir",
+  "P2": "sinyal coini haric, ayni Binance sektor etiketi VE 24 sa hacim 0,5-2 kati; < 3 aday -> sektor sarti kalkar; yine < 3 -> hacim 0,25-4 kati; secim ve yon sha256(kimlik) ile"
+ },
+ "sauron_esigi": "kategori GECTI + kill islememis + Oktay'in acik onayi + surum numarasi",
+ "sinyal_birimi": "coin basina ayni anda en cok 1 acik sinyal; yeni sinyal son acilistan VE son kapanistan 2 sa sonra; sogumadaki aday GOLGE (skorlanmaz, hukme girmez)",
+ "skor": "yayindan sonraki ilk tam dakikadan 1 dk kapanmis mumlar; ayni dakikada ikisi = gecersiz (erken gecersiz, kayip); 24 sa dolunca zaman asimi (kapanis); > 5 dk mum boslugu = HARIC (veri kesintisi, son fiyattan kapatilmaz)",
+ "surum": "K277 v1.3",
+ "tek_yon": "K270 puan >= +2 / <= -2 ve K272 izi +1 / -1 ayni yonde -> o yon; ters ya da akis celiskisi -> NOTR",
+ "test": "eslesmis isaret testi: kazanma = net(sinyal) > net(plasebo); iki yonlu kesin binom; aile = 3 kategori x 2 plasebo x gecilmis karar noktalari (kumulatif); Benjamini-Hochberg; Wald SPRT 0,50/0,55 yalniz gozlem",
+ "tuttu": "net getiri > 0",
+ "ufuk_sa": 24,
+ "yazildi": "2026-11-15T18:20Z"
+}
